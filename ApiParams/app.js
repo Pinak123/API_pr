@@ -44,11 +44,15 @@ app.get('/products/v1/query',(req, res) => {
         })
     }
     if(limit){
-        sortedProduct=sortedProduct.slice(0,Number(limit))
+        return sortedProduct=sortedProduct.slice(0,Number(limit))
     };
+    if (sortedProduct.length<1){
+        return res.status(200).json({succes:true , data:[]} );
+    }
     res.status(200).json(sortedProduct);
 
-})
+});
+
 
 
 
