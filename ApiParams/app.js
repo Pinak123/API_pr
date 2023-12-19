@@ -33,6 +33,27 @@ app.get('/products/api/:productID',(req , res) => {
 });
 
 
+//////////////////  String Parameters //////////////////
+
+app.get('/products/v1/query',(req, res) => {
+    const {search , limit} = req.query;
+    let sortedProduct = [...products]
+    if (search){
+        sortedProduct =sortedProduct.filter(product=>{
+            return product.name.startswith(search)
+        })
+    }
+    if(limit){
+        sortedProduct=sortedProduct.slice(0,Number(limit))
+    };
+    res.status(200).json(sortedProduct);
+
+})
+
+
+
+
+
 
 
 
