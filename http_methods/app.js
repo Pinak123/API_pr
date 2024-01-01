@@ -38,6 +38,15 @@ app.put('/api/postman/:id', (req, res) => {
 });
 
 
+/////Delete method
+app.delete('/api/delete/:id', (req, res) => {
+    const {id} = req.params;
+    const person = people.find((person) => person.id === Number(id));
+    if (!person) return res.status(404).json({succes:false , msg:  `No person found with id ${id}`});
+    const newPeople = people.filter((person)=> person.id !== Number(id));
+    return res.status(200).json({succes:true , data:newPeople});
+} );
+
 
 
 
